@@ -47,15 +47,14 @@ public class PhoneBook {
 
     }
 
-    public void addContact(Scanner scanner) {
+    public Contact addContact(Scanner scanner) {
         System.out.println("Please, fill in name, last name, phone number with spaces between: ");
         String firstName = scanner.next();
-        //System.out.println("Please enter contact last name: ");
         String lastName = scanner.next();
-        //System.out.println("Please enter contact number: ");
         String phoneNumber = scanner.next();
         Contact contact = new Contact(firstName, lastName, phoneNumber);
         contactList.add(contact);
+        return contact;
     }
 
     public void removeContact(Scanner scanner) {
@@ -68,20 +67,20 @@ public class PhoneBook {
     public void editContact(Scanner scanner) {
         System.out.println("Provide the index of contact to edit: ");
         int index = scanner.nextInt();
+        Contact contactToEdit = contactList.get(index);
         System.out.println("Please, fill in name, last name, phone number with spaces between: ");
         String firstName = scanner.next();
-        // System.out.println("Please enter contact last name: ");
         String lastName = scanner.next();
-        // System.out.println("Please enter contact number: ");
         String phoneNumber = scanner.next();
-        Contact contact = new Contact(firstName, lastName, phoneNumber);
-        contactList.set(index, contact);
+        contactToEdit.setFirstName(firstName);
+        contactToEdit.setLastName(lastName);
+        contactToEdit.setPhoneNumber(phoneNumber);
     }
 
     public void listContacts() {
 
         if (contactList.isEmpty()) {
-            System.out.println("List is empty. Please add contact with index 2: \n");
+            System.out.println("List is empty. Please add contact with operation '2': \n");
         } else {
             for (int i = 0; i < contactList.size(); i++) {
                 System.out.print("Index " + i + ": ");
